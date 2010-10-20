@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project name="flex css style library" basedir="." default="build-css">
+	
+	<!-- Property file. -->
+	<property file="build.properties" />
+	
+	<!-- DEFAULT. Runs MXMLC compiler on css file to produce a runtime css file. -->
+	<target name="build-css" description="Runs MXMLC compiler on css file to produce a runtime css file.">
+		<!-- Compile against config -->
+		<echo>[EXEC] Compiling ${css.filename}.swf</echo>
+			<exec executable="${mxmlc.loc}" dir="${basedir}">
+				<arg line="+flex.lib.dir=${flex.lib.dir}" />
+				<arg line="+playerglobal.lib.dir=${playerglobal.lib.dir}" />
+				<arg line="+player.version=${player.version}" />
+				<arg line="+locale.dir=${locale.dir}" />
+				<arg line="+bin.dir=${bin.dir}" />
+				<arg line="+css.filename=${css.filename}" />
+				<arg line="${css.loc}" />
+				<arg line="-load-config=${config}" />
+			</exec>
+		<echo>[EXEC] Finished compiling ${css.filename}.swf. ${css.filename}.swf can be found in ${bin.dir}/.</echo>
+	</target>
+	
+</project>
